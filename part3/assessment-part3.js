@@ -14,7 +14,10 @@
 
 // CODE HERE...
 
-
+function callBinding(magicAnimals, updateAnimal, id){
+    let animal = magicAnimals.find(e => e.id === id);
+    return updateAnimal.call(animal, 'Trogdor');
+}
 
 // *************
 // * PROBLEM 2 *
@@ -28,7 +31,11 @@
 // return the result of your updateAnimal invocation
 
 // CODE HERE...
-
+function applyBinding(magicAnimals, updateAnimal, id){
+    let animal = magicAnimals.find(e => e.id === id);
+    
+    return updateAnimal.apply(animal, ['being majestic', 'eating rainbows'])
+}
 
 
 // *************
@@ -49,6 +56,12 @@ var foo;
 
 // CODE HERE...
 
+function promiseMe($q){
+    return new Promise(async resolve => {
+      await setTimeout(20)
+      resolve(foo = 'bar')
+    })
+}
 
 
 // *************
@@ -64,3 +77,19 @@ var foo;
 // and then resolve the array as you complete your promise.
 
 // CODE HERE...
+function emailList($q, $http){
+    return new Promise(async (resolve) => {
+        let arr = [];
+        await $http({
+            method: 'GET',
+            url: '/api/users'
+          }).then(function successCallback(res) {
+              arr = res.data
+            }, function errorCallback(res) {
+              // called asynchronously if an error occurs
+              // or server returns response with an error status.
+            })
+        console.log(arr)
+        resolve(arr.map(e => e.email))
+    })
+}
