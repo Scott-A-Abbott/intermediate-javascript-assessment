@@ -166,6 +166,5 @@ var theAnswer = "Unknown";
 
 // CODE HERE...
 async function promiseCatcher(promise) {
-  let theAnswer = await promise.then(res => res)
-  console.log(theAnswer);  
+  theAnswer = await promise.then(res => res)
 }
